@@ -1,4 +1,10 @@
-"""
+#AUTHOR:      Bradley, Sarah
+#UNIT 1:      CMSC315 Data Structures and Analysis
+#PURPOSE:     object-oriented programming principles
+#DATE:        15Aug2026
+#LAST UPDATED:15Aug2026
+
+""""
 ===========================================================
 Unit 1 DISCUSSION: Python OOP, Namespaces, and Copying
 ===========================================================
@@ -24,8 +30,15 @@ from copy import copy, deepcopy
 #
 # Replace the pass statement with your implementation.
 
-class ParentClass:
-    pass
+class Athlete:
+    activity_type = "Exercise"
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def display_info(self):
+        print("Name:", self.name, "Age:", self.age)
 
 
 # TODO 2:
@@ -40,9 +53,24 @@ class ParentClass:
 #
 # Replace the pass statement with your implementation.
 
-class ChildClass(ParentClass):
-    pass
+class Runner(Athlete):
+    sport = "Running"
 
+    def __init__(self, name, age, weekly_miles):
+        super().__init__(name, age)
+        self.weekly_miles = weekly_miles
+        self.runs = []
+
+    def add_run(self, distance):
+        self.runs.append(distance)
+
+    # TODO 6: student created extension
+    def total_runs(self):
+        return len(self.runs)
+
+    def display_info(self):
+        print("Name:", self.name, "Age:", self.age,
+              "Weekly Miles:", self.weekly_miles, "Runs:", self.runs)
 
 # TODO 3:
 # Create a function that demonstrates class namespaces and instance namespaces.
@@ -58,6 +86,18 @@ class ChildClass(ParentClass):
 def demonstrate_namespaces():
     print("\n=== Namespace Demonstration ===")
     print("TODO: Implement namespace demonstration")
+
+    runner1 = Runner("Sarah", 26, 25)
+    runner2 = Runner("Juan", 28, 15)
+
+    print(Runner.sport)
+    print(runner1.sport)
+
+    runner1.favorite_run = "Trail"
+
+    print(runner1.__dict__)
+    print(runner2.__dict__)
+    print(Runner.__dict__)
 
 
 # TODO 4:
@@ -75,6 +115,21 @@ def demonstrate_copying():
     print("\n=== Copy Demonstration ===")
     print("TODO: Implement shallow copy and deep copy demonstration")
 
+    runner = Runner("Millie", 3, 7)
+    runner.add_run(3)
+    runner.add_run(5)
+
+    shallow = copy(runner)
+    deep = deepcopy(runner)
+
+    runner.add_run(10)
+
+#shallow copy = shares run
+#deep copy = seperate runs
+
+    print("Original:", runner.runs)
+    print("shallow copy", shallow.runs)
+    print("deep copy:", deep.runs)
 
 # TODO 5:
 # Complete the main function.
@@ -90,8 +145,16 @@ def main():
     print("=== Unit 1 OOP Assignment ===")
 
     print("\nTODO: Create and test your parent object")
+    athlete = Athlete("Joey", 28)
+    athlete.display_info()
 
     print("\nTODO: Create and test your child object")
+    runner = Runner("Dave", 32, 20)
+    runner.add_run(3)
+    runner.add_run(5)
+    runner.display_info()
+
+    print("Total runs:", runner.total_runs())
 
     demonstrate_namespaces()
     demonstrate_copying()
