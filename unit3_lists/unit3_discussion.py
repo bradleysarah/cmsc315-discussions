@@ -153,8 +153,8 @@ def main():
     print("TODO: Demonstrate searching for values.")
 
     # search for a value that exists
-    result = search_value(race_list, "10K")
-    print("Index of 10K:", result)
+    result = search_value(race_list, "21K")
+    print("Index of 21K:", result)
 
     # search for a value that does not exist
     result = search_value(race_list, "100K")
