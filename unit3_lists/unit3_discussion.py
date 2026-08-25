@@ -1,3 +1,10 @@
+#AUTHOR:      Bradley, Sarah
+#UNIT 3:      CMSC315 Data Structures and Analysis
+#PURPOSE:     fundamental lists
+#DATE:        21Aug2026
+#LAST UPDATED:21Aug2026
+
+
 """
 ==================================================
 Unit 3 DISCUSSION: List Operations (Insert, Delete, Search)
@@ -22,7 +29,11 @@ def insert_at(lst, index, value):
     - Use comments to explain how insertion performance may vary depending on
       where the insertion occurs.
     """
-    pass
+    # insert places the new value at the chosen index
+    lst.insert(index, value)
+
+    # items after the insertion point shift right
+
 
 
 def delete_at(lst, index):
@@ -36,7 +47,12 @@ def delete_at(lst, index):
     - Return None if the index is invalid.
     - Add comments explaining why index validation and safe deletion are important.
     """
-    pass
+    # check the index first so the program does not crash
+    if index < 0 or index >= len(lst):
+        return None
+
+    # pop removes and returns the value at the given index
+    return lst.pop(index)
 
 
 def search_value(lst, value):
@@ -49,7 +65,12 @@ def search_value(lst, value):
     - Return -1 if the value is not found.
     - Add comments explaining why this is a linear search and why it scans sequentially.
     """
-    pass
+    # linear search checks each item one at a time from the beginning
+    for i in range(len(lst)):
+        if lst[i] == value:
+            return i
+
+    return -1
 
 
 def main():
@@ -72,6 +93,21 @@ def main():
     print("\n=== INSERTION TESTS ===")
     print("TODO: Create a list and demonstrate insertions.")
 
+    race_list = ["5K", "10K", "42K"]
+    print("Original list:", race_list)
+
+    # insert at beginning
+    insert_at(race_list, 0, "1 Mile")
+    print("After beginning insertion:", race_list)
+
+    # insert in middle
+    insert_at(race_list, 2, "21K")
+    print("After middle insertion:", race_list)
+
+    # insert at end
+    insert_at(race_list, len(race_list), "50K")
+    print("After end insertion:", race_list)
+
     # ===============================
     # TODO (Student): DELETION TESTS
     # ===============================
@@ -88,6 +124,21 @@ def main():
     print("\n=== DELETION TESTS ===")
     print("TODO: Demonstrate deletions from multiple positions.")
 
+    # remove the first item
+    removed = delete_at(race_list, 0)
+    print("Removed from beginning:", removed)
+    print("Updated list:", race_list)
+
+    # remove from the middle
+    removed = delete_at(race_list, 2)
+    print("Removed from middle:", removed)
+    print("Updated list:", race_list)
+
+    # remove the last item
+    removed = delete_at(race_list, len(race_list) - 1)
+    print("Removed from end:", removed)
+    print("Updated list:", race_list)
+
     # ===============================
     # TODO (Student): SEARCH TESTS
     # ===============================
@@ -100,6 +151,14 @@ def main():
 
     print("\n=== SEARCH TESTS ===")
     print("TODO: Demonstrate searching for values.")
+
+    # search for a value that exists
+    result = search_value(race_list, "10K")
+    print("Index of 10K:", result)
+
+    # search for a value that does not exist
+    result = search_value(race_list, "100K")
+    print("Index of 100K:", result)
 
     # ===============================
     # TODO (Student): EDGE CASES
@@ -116,6 +175,14 @@ def main():
 
     print("\n=== EDGE CASES ===")
     print("TODO: Demonstrate at least two edge cases.")
+
+    #edge case 1: invalid index returns None instead of crashing
+    print("Delete invalid index:", delete_at(race_list, 20))
+
+    # edge case 2: insert into an empty list
+    empty_list = []
+    insert_at(empty_list, 0, "5K")
+    print("Insert into empty list:", empty_list)
 
 
 
