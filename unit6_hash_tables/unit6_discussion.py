@@ -1,3 +1,9 @@
+# AUTHOR:      Bradley, Sarah
+# UNIT 6:      CMSC315 Data Structures and Analysis
+# PURPOSE:     Python Dictionaries as Hash Tables
+# DATE:        14Sep2026
+# LAST UPDATED:14Sep2026
+
 """
 ====================================================
 UNIT 6 DISCUSSION: Python Dictionaries as Hash Tables
@@ -35,6 +41,22 @@ def main():
     print("\n=== INSERT OPERATIONS ===")
     print("TODO: Create a dictionary and add multiple key-value pairs.")
 
+    # Create an empty dictionary to store inventory
+    inventory = {}
+
+    # Add SKUs as keys and quantities as values
+    inventory["P100"] = 15
+    inventory["P200"] = 8
+    inventory["P300"] = 20
+    inventory["P400"] = 12
+    inventory["P500"] = 5
+
+    # A dictionary works like a hash table by storing
+    # information as key-value pairs for quick access
+
+    # Display the inventory
+    print("Inventory:", inventory)
+
     # ===============================
     # TODO (Student): LOOKUP OPERATIONS
     # ===============================
@@ -46,6 +68,12 @@ def main():
 
     print("\n=== LOOKUP OPERATIONS ===")
     print("TODO: Demonstrate successful key lookups.")
+
+    # Look up the quantity for two existing SKUs
+    print("P100 quantity:", inventory["P100"])
+    print("P300 quantity:", inventory["P300"])
+
+    # The SKU is used as the key to quickly find its stored quantity
 
     # ===============================
     # TODO (Student): UPDATE OPERATIONS
@@ -60,6 +88,15 @@ def main():
     print("\n=== UPDATE OPERATIONS ===")
     print("TODO: Demonstrate updating an existing key.")
 
+    # Display the inventory before the update
+    print("Before update:", inventory)
+
+    # Update the quantity for P100
+    inventory["P100"] = 25
+
+    # Assigning a new value to an existing key replaces the old value
+    print("After update:", inventory)
+
     # ===============================
     # TODO (Student): DELETE OPERATIONS
     # ===============================
@@ -71,6 +108,15 @@ def main():
 
     print("\n=== DELETE OPERATIONS ===")
     print("TODO: Demonstrate deleting a key-value pair.")
+
+    # Display the inventory before deleting an item
+    print("Before deletion:", inventory)
+
+    # Delete P200 from the inventory
+    del inventory["P200"]
+
+    # Removing a key also removes its stored value
+    print("After deletion:", inventory)
 
     # ===============================
     # TODO (Student): EDGE CASES
@@ -88,6 +134,19 @@ def main():
 
     print("\n=== EDGE CASES ===")
     print("TODO: Demonstrate and explain edge cases.")
+
+    # Edge case 1: Look up a SKU that does not exist
+    missing_item = inventory.get("P999")
+
+    # get() safely returns None when the key is not found
+    print("Lookup missing P999:", missing_item)
+
+    # Edge case 2: Try to delete a SKU that does not exist
+    removed_item = inventory.pop("P999", None)
+
+    # Using pop with None prevents an error if the key does not exist
+    print("Delete missing P999:", removed_item)
+    print("Inventory after missing deletion:", inventory)
 
 
 
